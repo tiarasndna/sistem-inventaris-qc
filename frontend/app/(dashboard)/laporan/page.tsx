@@ -2,8 +2,7 @@
 import { Metadata } from "next";
 
 // import custom components
-import LaporanKerusakanManager from "components/ruangalat ukur/laporan/kerusakan/LaporanKerusakanManager";
-
+import LaporanKerusakanManager from "../../../components/ruang-alat-ukur/laporan/kerusakan/LaporanKerusakanManager";
 export const metadata: Metadata = {
   title: "Laporan Kerusakan Alat | Ruang Alatukur - Admin Panel",
   description:

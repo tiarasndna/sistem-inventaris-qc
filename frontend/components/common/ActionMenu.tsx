@@ -20,7 +20,6 @@ Note: If you have specified both menuItems and children parameters, menuItems wi
 // import node module libraries
 import Link from "next/link";
 import React, { Fragment, useEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
 import { Dropdown } from "react-bootstrap";
 
 interface CustomToggleProps {
@@ -61,8 +60,6 @@ const ActionMenu: React.FC<ActionMenuProps> = ({
 
   // Portal butuh `document`, yang cuma ada di client -> tunggu mount dulu
   // supaya tidak error waktu server-side render.
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     if (!closeOnScroll) return;
@@ -150,7 +147,7 @@ const ActionMenu: React.FC<ActionMenuProps> = ({
       {/* Portal: elemen menu dirender ke document.body (keluar dari tabel),
           tapi tetap "anak" Dropdown secara React Context, jadi semua logic
           (buka/tutup, keyboard nav, dst) tetap jalan normal. */}
-      {mounted ? createPortal(menuContent, document.body) : menuContent}
+      {menuContent}
     </Dropdown>
   );
 };

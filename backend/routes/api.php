@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\RolePermissionController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\PemintaController;
 use App\Http\Controllers\Api\PekerjaanController; // <-- DITAMBAHKAN IMPORT INI
+use App\Http\Controllers\Api\LaporanKerusakanController; // Sesuaikan dengan nama controller kamu
 
 // ==========================================
 // 1. ROUTE PUBLIK
@@ -158,11 +159,18 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::patch('/peminta/{id}/aktifkan', [PemintaController::class, 'aktifkan']);
 
 
-    // ==========================================
+// ==========================================
     // I. MODUL MASTER PEKERJAAN
     // ==========================================
-
     Route::get('/pekerjaan/active', [PekerjaanController::class, 'getActive']);
     Route::patch('/pekerjaan/{id}/toggle-status', [PekerjaanController::class, 'toggleStatus']);
     Route::apiResource('pekerjaan', PekerjaanController::class);
-});
+
+    // ==========================================
+    // J. MODUL LAPORAN KERUSAKAN
+    // ==========================================
+    // Menggunakan apiResource karena ini adalah API (tanpa route create & edit)
+    Route::apiResource('laporan-kerusakan', LaporanKerusakanController::class);
+
+}); // <-- Ini adalah penutup dari Route::middleware('auth:sanctum')->group(function () {
+
